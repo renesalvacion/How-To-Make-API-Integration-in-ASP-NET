@@ -1,12 +1,78 @@
-📘 ASP.NET Core Web API — User Image Upload Example
+# 📘 ASP.NET Core Web API — User Image Upload Example
 
-This project demonstrates how to build a simple ASP.NET Core Web API that allows users to upload profile images and store their file names in a database.
+This project demonstrates how to build a simple **ASP.NET Core Web API** that allows users to upload profile images and store their file names in a database.
 
-🧱 1. Create the Database and Tables
-📂 Step 1: Create a Models folder
+---
 
-Add a file named User.cs:
+## 📑 Table of Contents
 
+1. [Overview](#overview)
+2. [Features](#features)
+3. [Project Structure](#project-structure)
+4. [Database Setup](#database-setup)
+5. [API Endpoints](#api-endpoints)
+6. [Code Implementation](#code-implementation)
+   - [User Model](#1-user-model)
+   - [Database Context](#2-database-context)
+   - [User Controller](#3-user-controller)
+7. [Configuration](#configuration)
+8. [Migrations & Database Update](#migrations--database-update)
+9. [Testing the API](#testing-the-api)
+10. [Example Result](#example-result)
+
+---
+
+## 🧠 Overview
+
+This **Web API** provides a basic endpoint that:
+- Accepts user profile image uploads.
+- Validates image extensions (`.jpg`, `.jpeg`, `.png`).
+- Saves files in the `wwwroot/images` folder.
+- Stores the file name in the database.
+
+---
+
+## ⚙️ Features
+
+✅ Upload user profile images  
+✅ Validate allowed file types  
+✅ Store file names in SQL database  
+✅ Supports **SQL Server** or **MySQL (Pomelo)**  
+✅ Includes Swagger for API testing  
+
+---
+
+## 📁 Project Structure
+
+app/
+│
+├── Controllers/
+│ └── UserController.cs
+│
+├── Data/
+│ └── AppDbContext.cs
+│
+├── Models/
+│ └── User.cs
+│
+├── wwwroot/
+│ └── images/ # Uploaded files are stored here
+│
+├── appsettings.json
+└── Program.cs
+
+
+
+
+
+---
+
+## 🧱 Database Setup
+
+### 📂 Step 1: Create a Models Folder
+
+**`Models/User.cs`**
+```csharp
 using System.ComponentModel.DataAnnotations;
 
 namespace app.Models
@@ -20,10 +86,10 @@ namespace app.Models
     }
 }
 
-🗄️ 2. Create the Database Context
-📂 Step 2: Create a Data folder
 
-Add a file named AppDbContext.cs:
+📂 Step 2: Create a Data Folder
+
+Data/AppDbContext.cs
 
 using app.Models;
 using Microsoft.EntityFrameworkCore;
@@ -40,10 +106,10 @@ namespace app.Data
     }
 }
 
-🧩 3. Create the User Controller
-📂 Step 3: Create a Controllers folder
 
-Add a file named UserController.cs:
+🧩 Step 3: Create the User Controller
+
+Controllers/UserController.cs
 
 using Microsoft.AspNetCore.Mvc;
 using app.Models;
@@ -108,9 +174,10 @@ namespace app.Controllers
     }
 }
 
-⚙️ 4. Configure the Database Connection
 
-In your appsettings.json, add the connection string:
+
+Configuration
+🧾 appsettings.json
 
 {
   "ConnectionStrings": {
@@ -126,7 +193,7 @@ In your appsettings.json, add the connection string:
 }
 
 
-In Program.cs, register the AppDbContext:
+Program.cs
 
 using app.Data;
 using Microsoft.EntityFrameworkCore;
@@ -160,7 +227,7 @@ app.Run();
 
 
 
-🧱 5. Apply Migrations
+Migrations & Database Update
 
 Run the following commands in the terminal:
 
